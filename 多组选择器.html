@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container">
+    <ul class="list">
+        <li>哈利波特</li>
+        <li>哈根提斯</li>
+        <li>欲界</li>
+        <li>底滤天</li>
+        <li>蜜丸</li>
+        <li>抉择</li>
+    </ul>
+    <h2>我是H2标题</h2>
+    <div class="box">我是box</div>
+</div>
+<script src="js/extend.js"></script>
+<script>
+    function $group(str) {
+        var arr = [];
+        var result = [];
+        arr = str.split(",");
+        for( var i = 0; i < arr.length; i++) {
+            var item = arr[i];
+            var flag = item.charAt(0);
+            var index = item.indexOf(flag);
+            var value = item.substring(index+1);
+            if(flag === "#") {
+                result.push($$.$id(value));
+            } else if(flag === ".") {
+                var classArr = $$.$class(value);
+                for( var j = 0; j < classArr.length; j++) {
+                    result.push(classArr[j]);
+                }
+            } else {
+                var tagArr = $$.$tag(item);
+                for(var j = 0; j < tagArr.length; j++) {
+                    result.push(tagArr[j]);
+                }
+            }
+        }
+        return result;
+    }
+    var doms = $group("#container,.box,h2");
+    console.log(doms);
+    // doms[0].style.border = "1px solid red";
+    for(var i = 0; i < doms.length;i++) {
+        var dom = doms[i];
+        dom.style.border = "1px solid red";
+    }
+</script>
+</body>
+</html>

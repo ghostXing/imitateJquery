@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <h1>cf</h1>
+    <h2 style="color: yellow;">英雄联盟</h2>
+    <h2>梦幻西游</h2>
+</div>
+<script src="js/extend.js"></script>
+<script>
+    //设置样式值
+     function setStyle(doms,key,value) {
+         for( var i = 0; i < doms.length; i++) {
+             var dom = doms[i];
+             dom.style[key] = value;
+         }
+     }
+     //设置单个样式值
+    function setOneStyle(dom,key,value) {
+         var dom = dom;
+         dom.style[key] = value;
+    }
+    //获取样式
+    function getStyle(dom,key) {
+        if(dom.currentStyle) {
+            return dom.currentStyle[key];
+        } else {
+            return window.getComputedStyle(dom,null)[key];
+        }
+    }
+    //css完整的版本
+    function css(context,key,value) {
+         var doms = $$.isString(context) ? $$.$all(context) : context;
+         //设置多个dom元素
+         if(doms.length) {
+             //设置模式
+             if(value) {
+                    for(var i = 0; i < doms.length; i++) {
+                        setOneStyle(doms[i],key,value);
+                    }
+             }else {
+                 //获取模式
+                 return getStyle(doms[0],key);
+             }
+         }else {
+             //设置单个dom元素
+             if(value) {
+                 //设置
+                 setOneStyle(doms,key,value);
+             }else {
+                 //获取
+                 return getStyle(doms,key);
+             }
+         }
+    }
+
+    css("h1","color","red");
+    console.log(css("h1","color"));
+    function show(context) {
+        var doms = $$.isString(context) ? $$.$all(context) : context;
+        for( var i = 0; i < doms.length; i++) {
+            css(doms[i],"display","block");
+        }
+    }
+    function hide(context) {
+        var doms = $$.isString(context) ? $$.$all(context) : context;
+        for( var i = 0; i < doms.length; i++) {
+            css(doms[i],"display","none");
+        }
+    }
+    hide("h2");
+</script>
+</body>
+</html>

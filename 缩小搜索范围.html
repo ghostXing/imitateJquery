@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <span>我是span1</span>
+    <span>我是span2</span>
+    <ul>
+        <li>我是li1</li>
+        <li>我是li2</li>
+    </ul>
+    <div>我是里面的div</div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/extend.js"></script>
+<script>
+    //缩小搜索范围
+    function $tag(id, tag) {
+        var dom = $$.$id(id);
+        var target = dom.getElementsByTagName(tag);
+        return target;
+    }
+
+    //jquery实现方法
+    $($tag("box", "span")).click(function () {
+        this.style.backgroundColor = "green";
+    })
+    //原生js
+    // var spans = $tag("box", "span");
+    // for (var i = 0; i < spans.length; i++) {
+    //     var span = spans[i];
+    //     span.style.backgroundColor = "blue";
+    // }
+    var spans = $$.$tag("span", "box");
+    for (var i = 0; i < spans.length; i++) {
+        var span = spans[i];
+        span.style.backgroundColor = "red";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: skyblue;
+        }
+        #btn {
+            position: absolute;
+            top: 150px;
+        }
+        #box2 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 200px;
+            background: red;
+        }
+        .box3 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 350px;
+            background: yellow;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/extend.js"></script>
+    <script src="js/animate.js"></script>
+</head>
+<body>
+<div class="box"></div>
+<div id="box2"></div>
+<div class="box3"></div>
+<input type="button" id="btn" value="运动">
+<script>
+    var duration = 5000;
+    var btn = document.getElementById("btn");
+    //多属性json
+    var json = {"left":"250px","top":"300px","opacity":0.8,"width":"10px","height":"50px"};
+    //注册点击事件
+    $$.click("btn",function () {
+        animate.add(".box",json,duration);
+        animate.add("#box2",json,duration);
+        animate.add(".box3",json,duration);
+    });
+    //运动函数
+    function move() {
+        var pass = +new Date();
+        var tween = getTween(now,pass,sumTime);
+       if(tween >= 1) {
+           stop(timer);
+       } else {
+           oneProperty(".box","left",30,s,tween);
+       }
+    }
+    //单一性原则，获取时间进程函数
+    function getTween(now,pass,duration) {
+        var tween = (pass - now) / duration;
+        return tween;
+    }
+    //停止函数
+    function stop(timer) {
+        clearInterval(timer);
+    }
+    //设置单一属性
+    function oneProperty(context,key,origin,s,tween) {
+        $$.css(context,key,origin + s * tween + "px");
+    }
+    //动画函数
+    function Animate(context,json,duration) {
+        var now = +new Date();
+        var tween = 0;
+        var pass = 0;
+        var jsonArray = adapter(context,json);
+        var timer = setInterval(move,30);
+        //适配器
+        function adapter(context,source) {
+            var jsonArray = [];
+            for(var item in source) {
+                var json = {};
+                json.name = item;
+                json.origin = parseFloat($$.css(context,item));
+                json.s = parseFloat(source[item]) - json.origin;
+                jsonArray.push(json);
+            }
+            console.log(jsonArray);
+            return jsonArray;
+        }
+        //运动函数
+        function move() {
+            if(tween >= 1) {
+                stop(timer);
+            } else {
+                pass = +new Date();
+                tween = getTween(now,pass,duration);
+                for( var i = 0; i < jsonArray.length; i++) {
+                    oneProperty(context, jsonArray[i].name, jsonArray[i].origin, jsonArray[i].s, tween);
+                }
+            }
+        }
+        //单一性原则，获取时间进程函数
+        function getTween(now,pass,duration) {
+            var tween = (pass - now) / duration;
+            return tween;
+        }
+        //停止函数
+        function stop(timer) {
+            clearInterval(timer);
+        }
+        //设置单一属性
+        function oneProperty(context,key,origin,s,tween) {
+            if(key === "opacity") {
+                $$.css(context,key,origin + s * tween);
+            } else {
+                $$.css(context,key,origin + s * tween + "px");
+            }
+        }
+    }
+</script>
+</body>
+</html>

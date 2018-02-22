@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>孤月影</p>
+<p>隐刀寒</p>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script src="js/extend.js"></script>
+<script>
+    function html(context,value) {
+        var doms = $$.$all(context);
+        if(value) {
+            for( var i = 0; i < doms.length; i++) {
+                doms[i].innerHTML = value;
+            }
+        } else {
+            return doms[0].innerHTML;
+        }
+    }
+    html("li","ss");
+    console.log(html("li"))
+</script>
+</body>
+</html>

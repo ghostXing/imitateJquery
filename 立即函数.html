@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //解决全局变量污染问题
+    (function (x,y) {
+        alert(x + y);
+    })(2,3);
+    //立即函数结束必须加分号
+    //立即函数有缺点，外面的函数，不能访问立即函数里面的数据
+    //第一种可以使用立即函数内部数据的方法
+    var obj = {};
+    (function () {
+        var name = "Amy";
+        var age = "10";
+        var json = {
+            name: name,
+            age: age
+        }
+        obj = json;
+    })();
+    // console.log(obj.name);
+    //第二种方法
+    (function (window) {
+        var name = "Amy";
+        var age = "10";
+        var json = {
+            name: name,
+            age: age
+        }
+        window.json = json;
+    })(window);
+    console.log(json.name);
+</script>
+</body>
+</html>

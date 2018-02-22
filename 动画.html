@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: skyblue;
+        }
+
+        #btn {
+            position: absolute;
+            top: 150px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+<div class="box"></div>
+<input type="button" id="btn" value="运动">
+<script>
+    var box = document.getElementsByTagName("div")[0];
+    var timer = null;
+    var speed = 10;
+    var btn = document.getElementById("btn");
+    $(btn).click(function () {
+        timer = setInterval(move, 10);
+    });
+
+    function move() {
+        if (box.offsetLeft > 500) {
+            clearInterval(timer);
+        } else {
+            box.style.left = box.offsetLeft + 10 + "px";
+        }
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .big {
+            font-size:40px;
+        }
+        .color {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<p>孤月影</p>
+<p>隐刀寒</p>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script src="js/extend.js"></script>
+<script>
+    //设置属性
+    function attr(context,key,value) {
+        var doms = $$.isString(context) ? $$.$all(context) : context;
+        if(value) {
+            for(var i = 0; i < doms.length; i++) {
+                doms[i].setAttribute(key,value);
+            }
+        } else {
+            return doms[0].getAttribute(key);
+        }
+    }
+    $$.attr("p","class","small");
+    $$.attr("p","class","big");
+    //设置addClass和removeClass
+    function addClass(context,name) {
+        var doms = $$.$all(context);
+        for( var i = 0; i < doms.length; i++) {
+            addName(doms[i],name);
+        }
+        function addName(dom,name) {
+            dom.className = dom.className + " " + name;
+        }
+    }
+    $$.addClass("li","big color");
+    function removeClass(context,name) {
+        var doms = $$.$all(context);
+        for( var i = 0; i < doms.length; i++) {
+            removeName(doms[i],name);
+        }
+        function removeName(dom,name) {
+            dom.className = dom.className.replace(name," ");
+        }
+    }
+    // $$.removeClass("li","color");
+</script>
+</body>
+</html>

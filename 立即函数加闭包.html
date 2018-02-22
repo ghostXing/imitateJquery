@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var $ = (function () {
+        var name = "amy";
+        function get (x,y) {
+            return x + y;
+        }
+        return {
+            name: name,
+            get:get
+        }
+    })();
+    console.log($.name);
+    console.log($.get(5,4));
+</script>
+</body>
+</html>

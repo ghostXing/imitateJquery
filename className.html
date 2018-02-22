@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <div>不是box</div>
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div>不是box</div>
+        </div>
+    </div>
+</div>
+<script>
+    function $class(className) {
+        var arr = [];
+        var dom = document.getElementsByTagName("*");
+        for( var i = 0; i < dom.length; i++) {
+            var value = dom[i];
+            if(value.className === className) {
+                arr.push(value);
+            }
+        }
+        return arr;
+    }
+    var boxs = $class("box");
+    for( var i = 0; i < boxs.length; i++) {
+        var box = boxs[i];
+        box.style.backgroundColor = 'green';
+    }
+</script>
+
+</body>
+</html>

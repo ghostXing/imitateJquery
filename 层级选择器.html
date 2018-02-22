@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container">
+    <ul class="list">
+        <li>哈利波特</li>
+        <li>哈根提斯</li>
+        <li>欲界</li>
+        <li>底滤天</li>
+        <li>蜜丸</li>
+        <li>抉择</li>
+    </ul>
+    <h2>我是H2标题</h2>
+    <div class="box">我是box</div>
+</div>
+<script src="js/extend.js"></script>
+<script>
+    window.onload = function () {
+        var doms = $$.$apart("#container h2,#container .box");
+        console.log(doms);
+        // doms[0].style.border = "1px solid red";
+        for(var i = 0; i < doms.length;i++) {
+            var dom = doms[i];
+            dom.style.border = "1px solid red";
+        }
+    }
+    // function $layer(str) {
+    //     var arr = [];
+    //     var result = [], context = [];
+    //     arr = str.split(" ");
+    //     for (var i = 0; i < arr.length; i++) {
+    //         var item = arr[i];
+    //         var flag = item.charAt(0);
+    //         var index = item.indexOf(flag);
+    //         var value = item.substring(index + 1);
+    //         if (flag === "#") {
+    //             result = [];
+    //             result.push($$.$id(value));
+    //             context = result;
+    //         } else if (flag === ".") {
+    //             result = [];
+    //             if (context.length > 0) {
+    //                 for (var j = 0; j < context.length; j++) {
+    //                     pushArray(result, $$.$class(value, context[j]));
+    //                 }
+    //             } else {
+    //                 pushArray(result, $$.$class(value));
+    //             }
+    //             context = result;
+    //         } else {
+    //             result = [];
+    //             if (context.length > 0) {
+    //                 for (var j = 0; j < context.length; j++) {
+    //                     pushArray(result, $$.$tag(item, context[j]));
+    //                 }
+    //             } else {
+    //                 pushArray(result, $$.$tag(item));
+    //             }
+    //             context = result;
+    //         }
+    //     }
+    //     function pushArray(result, arr) {
+    //         for (var z = 0; z < arr.length; z++) {
+    //             result.push(arr[z]);
+    //         }
+    //     }
+    //     return result;
+    // }
+</script>
+</body>
+</html>

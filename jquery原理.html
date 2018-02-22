@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<button id="btn">点击</button>
+<script>
+    function $(str) {
+        this.elements = [];
+        this.$all(str);
+    }
+    $.prototype = {
+        $all: function (str, target) {
+            var dom = target || document;
+            this.elements =dom.querySelectorAll(str);
+            return this;
+        },
+        show: function () {
+            var doms = this.elements;
+            for( var i = 0; i < doms.length; i++) {
+                doms[i].style.display = "block";
+            }
+            return this;
+        },
+        hide: function () {
+            var doms = this.elements;
+            for( var i = 0; i < doms.length; i++) {
+                doms[i].style.display = "none";
+            }
+            return this;
+        }
+    }
+    var $$ = function (str) {
+        return new $(str);
+    };
+    $$(".box").hide().show();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">
+        <h2>1</h2>
+        <h2>2</h2>
+        <h2>3</h2>
+        <h2>4</h2>
+        <h2>5</h2>
+        <h2>6</h2>
+        <h3>7</h3>
+        <h3>8</h3>
+        <h3>9</h3>
+        <h3>10</h3>
+    </div>
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/extend.js"></script>
+<script>
+    // $("div").delegate("h2","click",function () {
+    //     $(this).css("color","red");
+    // });
+    // $$.on("box","click",function () {
+    //     $(this).css("backgroundColor","blue");
+    // });
+    // $$.click("box",function () {
+    //     this.style.backgroundColor = "green";
+    // })
+    // $$.hover("box",function () {
+    //     this.style.backgroundColor = "green";
+    // }, function () {
+    //     this.style.backgroundColor = "white";
+    // })
+    $$.click("box",function (e) {
+         $$.getTarget(e).style.backgroundColor = "green";
+     })
+</script>
+</html>
